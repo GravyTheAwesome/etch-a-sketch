@@ -14,3 +14,8 @@ for (let i = 0; i < 16; i++) {
         grid_row.appendChild(grid_square);
     }
 }
+
+const grid_squares = document.querySelectorAll('.grid-square');
+grid_squares.forEach((grid_square) => {
+    grid_square.addEventListener('mouseover', () => {grid_square.style.backgroundColor = 'black'});
+})
