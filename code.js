@@ -15,7 +15,21 @@ let pen_colour = 'normal';
 grid.classList.add('grid');
 body.appendChild(grid);
 
-
+function checkPenColour(element) {
+    switch (pen_colour) {
+        case 'normal':
+            element.addEventListener('mouseover', () => {element.style.backgroundColor = 'black'})
+            break;
+        case 'random':
+            element.addEventListener('mouseover', () => {
+                random_red = Math.floor(Math.random() * 256);
+                random_blue = Math.floor(Math.random() * 256);
+                random_green = Math.floor(Math.random() * 256);
+                element.style.backgroundColor = "#"+(random_red).toString(16)+(random_blue).toString(16)+(random_green).toString(16);
+            });
+            break;
+    }
+}
 
 for (let i = 0; i < grid_size; i++) {
     grid_row = document.createElement('div');
@@ -30,20 +44,7 @@ for (let i = 0; i < grid_size; i++) {
 
 const grid_squares = document.querySelectorAll('.grid-square');
 grid_squares.forEach(grid_square => {
-    switch (pen_colour) {
-        case 'normal':
-            grid_square.addEventListener('mouseover', () => {grid_square.style.backgroundColor = 'black'})
-            break;
-        case 'random':
-            grid_square.addEventListener('mouseover', () => {
-                random_red = Math.floor(Math.random() * 256);
-                random_blue = Math.floor(Math.random() * 256);
-                random_green = Math.floor(Math.random() * 256);
-                console.log(random_red)
-                grid_square.style.backgroundColor = "#"+(random_red).toString(16)+(random_blue).toString(16)+(random_green).toString(16);
-            });
-            break;
-    }
+    checkPenColour(grid_square);
 });    
 
 clear_button.addEventListener('click', () => {
@@ -64,19 +65,7 @@ clear_button.addEventListener('click', () => {
         
         const grid_squares = document.querySelectorAll('.grid-square');
         grid_squares.forEach(grid_square => {
-            switch (pen_colour) {
-                case 'normal':
-                    grid_square.addEventListener('mouseover', () => {grid_square.style.backgroundColor = 'black'})
-                    break;
-                case 'random':
-                    grid_square.addEventListener('mouseover', () => {
-                        random_red = Math.floor(Math.random() * 256);
-                        random_blue = Math.floor(Math.random() * 256);
-                        random_green = Math.floor(Math.random() * 256);
-                        grid_square.style.backgroundColor = "#"+(random_red).toString(16)+(random_blue).toString(16)+(random_green).toString(16);
-                    });
-                    break;
-            }
+            checkPenColour(grid_square);
         });    
     }
 });
@@ -88,7 +77,6 @@ random_button.addEventListener('click', () => {
             random_red = Math.floor(Math.random() * 256);
             random_blue = Math.floor(Math.random() * 256);
             random_green = Math.floor(Math.random() * 256);
-            console.log(random_red)
             grid_square.style.backgroundColor = "#"+(random_red).toString(16)+(random_blue).toString(16)+(random_green).toString(16);
         }));
 
