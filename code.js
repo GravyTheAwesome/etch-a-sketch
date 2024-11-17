@@ -10,6 +10,7 @@ let grid_square;
 let random_red;
 let random_blue;
 let random_green;
+let shading_on = 'false';
 let pen_colour = 'normal';
 
 grid.classList.add('grid');
@@ -18,7 +19,16 @@ body.appendChild(grid);
 function checkPenColour(element) {
     switch (pen_colour) {
         case 'normal':
-            element.addEventListener('mouseover', () => {element.style.backgroundColor = 'black'})
+            let shading = 0;
+            element.addEventListener('mouseover', () => {
+                element.style.backgroundColor = 'black'    
+                if (shading_on == 'true') {
+                    shading += 0.1;
+                    element.style.opacity = shading;
+                } else {
+                    element.style.opacity = 1;
+                }
+            });
             break;
         case 'random':
             element.addEventListener('mouseover', () => {
@@ -91,4 +101,13 @@ normal_button.addEventListener('click', () => {
         }));
 
     pen_colour = 'normal';
+});
+
+shading_button.addEventListener('click', () => {
+    if (shading_on == 'true') {
+        shading_on = 'false';
+    } else {
+        shading_on = 'true';
+    };
+    console.log(shading_on)
 });
